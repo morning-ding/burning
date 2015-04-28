@@ -1,0 +1,71 @@
+package com.example.test;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class ChoiceActivity extends Activity{
+	private ListView lv;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_choice);
+		
+		//database
+		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase("/mnt/db/db_burning.db3", null);
+		String sql = "create table exe(user_id integer primary key, running integer(20)," +
+				", high integer(20), rope integer(20), deep integer(20)," +
+				"situp integer(20), total integer(20))";
+		db.execSQL(sql);
+		
+		//
+		lv = (ListView) findViewById(R.id.choice_id);
+		String[] all = {"ÅÜ²½","ÌøÉþ","¸ßÌ§ÍÈ","ÑöÎÔÆð×ø","Éî¶×"};
+		ListAdapter adapter = new ArrayAdapter<String>(ChoiceActivity.this,
+				android.R.layout.simple_list_item_1, all);
+		lv.setAdapter(adapter);
+	    final EditText ta_et = TimerActivity.et;
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				if(position == 0){
+					  Intent intent = new Intent(ChoiceActivity.this, TimerActivity.class);
+                  //  Intent intent = new Intent("android.intent.action.");
+					startActivity(intent);
+//					int time = Integer.parseInt(ta_et.getText().toString());
+//					String sql = "insert into <exe> (running) values (time)";
+				}else if(position == 1){
+					Intent intent = new Intent(ChoiceActivity.this, RopeActivity.class);
+					startActivity(intent);
+				}else if(position == 2){
+					Intent intent = new Intent(ChoiceActivity.this, HighActivity.class);
+					startActivity(intent);
+				}
+				else if(position == 3){
+					Intent intent = new Intent(ChoiceActivity.this, SitUpActivity.class);
+					startActivity(intent);
+				}
+				else if(position == 4){
+					Intent intent = new Intent(ChoiceActivity.this, TimerActivity.class);
+					startActivity(intent);
+				}
+			}
+			
+		});
+				
+		
+	}
+}
