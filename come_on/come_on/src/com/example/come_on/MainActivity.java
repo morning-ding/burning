@@ -43,10 +43,11 @@ public class MainActivity extends Activity {
 	private SharedPreferences sp;
 	MediaPlayer mp2 = null;
 	private static int countDay;
-	private static int diffDay;
+	public static int diffDay;
 	public static boolean isSame;
     public static SQLiteDatabase db;
 	private FileService service = null;
+	public static int isFirst=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +64,6 @@ public class MainActivity extends Activity {
         if(remember){
         	textView2.setText(name);
         	textView1.setText("»¶Ó­»ØÀ´");
-        	db = openOrCreateDatabase("db_burning", SQLiteDatabase.OPEN_READWRITE, null);
-    		String sql = "create table if not exists exe(_id integer primary key autoincrement, " +
-    				"running integer, high integer, rope integer, deep integer, " +
-    					"situp integer, total integer);";		
-    		db.execSQL(sql);	
-        	String sql2 = "insert into exe (running,high,rope,deep,situp,total) values (0,0,0,0,0,0)";
-			db.execSQL(sql2);
-			db.close();
         }
         button.setOnClickListener(new OnClickListener() {
 			
@@ -80,6 +73,7 @@ public class MainActivity extends Activity {
 				Intent intent = new Intent(MainActivity.this,
 						InformationUp.class);
 				startActivity(intent);
+				isFirst +=1;
 			}
 		});
         
@@ -106,6 +100,8 @@ public class MainActivity extends Activity {
         String previousTime = service.readContentFromFile("time.txt");
         String lastTime = service.readContentFromFile("diff.txt");
         SimpleDateFormat myFormatter = new SimpleDateFormat("yyyy-MM-dd");
+ 
+
         if(previousTime!="") {
         	
         	Date date = new Date();
@@ -145,8 +141,9 @@ public class MainActivity extends Activity {
 			
     		String now = myFormatter.format(date);
     		long diff_days=(date.getTime()-lastDate.getTime())/(1000*3600*24);
-    		diffDay =  Integer.parseInt(String.valueOf(diff_days));
+    		diffDay =  new Long(diff_days).intValue();
     		String countD = String.valueOf(diffDay);
+    		System.out.println("diffDay-->"+diffDay);
     		boolean flag = service.saveContentToFile("diff.txt",Context.MODE_WORLD_WRITEABLE,now.getBytes());
         	
         }
@@ -155,7 +152,6 @@ public class MainActivity extends Activity {
         	
         	lastTime = myFormatter.format(new Date());
     		boolean flag = service.saveContentToFile("diff.txt",Context.MODE_WORLD_WRITEABLE,lastTime.getBytes());
-    		diffDay =0;
     		String countD = String.valueOf(diffDay);
     }
     }
@@ -169,6 +165,7 @@ public class MainActivity extends Activity {
     	if(diffDay==0) return true;
     	else return false;
     }
+    
        
 }
 

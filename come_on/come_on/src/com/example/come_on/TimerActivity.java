@@ -25,6 +25,7 @@ public class TimerActivity extends Activity {
     public static SQLiteDatabase db;
     public static int total;
     public static int daynum ;
+    private static int number[] = new int[5];
     
     @Override
     protected void onCreate(Bundle savedInstanceState) { 
@@ -41,13 +42,24 @@ public class TimerActivity extends Activity {
 		
 		int num = MainActivity.getDiffDay();
 		System.out.println(num);
-			while(num!=0){
-				   String sql2 = "insert into exe (running,high,rope,deep,situp,total) values (0,0,0,0,0,0)";
-				   db.execSQL(sql2);
-				   num--;
-		    }		
+		if(MainActivity.isFirst == 1){
+			System.out.println("first");
+			String sql2 = "insert into exe (running,high,rope,deep,situp,total) values (0,0,0,0,0,0)";
+		    db.execSQL(sql2);
+		}
+	  if(MainActivity.isTheSameDay()==true){		    	
+	  }else{
+		 while(num!=0){
+	     String sql2 = "insert into exe (running,high,rope,deep,situp,total) values (0,0,0,0,0,0)";
+		  db.execSQL(sql2);
+		  num--;
+		    }	
+		 total = 0;
+		 for(int i = 0; i < 5; i++)
+			 number[i] = 0;
+	 }
 		
-		
+
 		
         tv = (TextView) findViewById(R.id.show); 
         et = (EditText) findViewById(R.id.ed);
@@ -90,15 +102,16 @@ public class TimerActivity extends Activity {
       if(ChoiceActivity.toast == 0){    	 
     	  num = Integer.parseInt(et.getText().toString());
     	  total = total + num;
-    	 String sql = "update exe set running="+ num +" where _id=" + daynum;
-    	//  String sql = "insert into exe (running) values ("+num+")";
+    	  number[0] = number[0] + num;
+    	 String sql = "update exe set running="+ number[0] +" where _id=" + daynum;
     	  db.execSQL(sql);
     	  String sql1 = "update exe set total="+ total +" where _id=" + daynum;
     	  db.execSQL(sql1);
       }else if(ChoiceActivity.toast == 1){    	 
     	  num = Integer.parseInt(et.getText().toString());
     	  total = total + num;
-    	  String sql = "update exe set high="+ num +" where _id=" + daynum;
+    	  number[1] = number[1] + num;
+    	  String sql = "update exe set high="+ number[1] +" where _id=" + daynum;
     	  //String sql = "insert into exe (high) values ("+num+")";
     	  db.execSQL(sql);
     	  String sql1 = "update exe set total="+ total +" where _id=" + daynum;
@@ -107,7 +120,8 @@ public class TimerActivity extends Activity {
       else if(ChoiceActivity.toast == 2){    	 
     	  num = Integer.parseInt(et.getText().toString());
     	  total = total + num;
-    	  String sql = "update exe set rope="+ num +" where _id=" + daynum;
+    	  number[2] = number[2] + num;
+    	  String sql = "update exe set rope="+ number[2] +" where _id=" + daynum;
     	  db.execSQL(sql);
     	  String sql1 = "update exe set total="+ total +" where _id=" + daynum;
     	  db.execSQL(sql1);
@@ -115,19 +129,22 @@ public class TimerActivity extends Activity {
       else if(ChoiceActivity.toast == 3){    	 
     	  num = Integer.parseInt(et.getText().toString());
     	  total = total + num;
-    	  String sql = "update exe set high="+ num +" where _id=" + daynum;
+    	  number[3] = number[3] + num;
+    	  String sql = "update exe set deep="+ number[3] +" where _id=" + daynum;
     	  db.execSQL(sql);
-    	  String sql1 = "update exe set deep="+ total +" where _id=" + daynum;
+    	  String sql1 = "update exe set total="+ total +" where _id=" + daynum;
     	  db.execSQL(sql1);
       }
       else if(ChoiceActivity.toast == 4){    	 
     	  num = Integer.parseInt(et.getText().toString());
     	  total = total + num;
-    	  String sql = "update exe set situp="+ num +" where _id=" + daynum;
+    	  number[4] = number[4] + num;
+    	  String sql = "update exe set situp="+ number[4] +" where _id=" + daynum;
     	  db.execSQL(sql);
     	  String sql1 = "update exe set total="+ total +" where _id=" + daynum;
     	  db.execSQL(sql1);
       }
+      MainActivity.isFirst +=1;
       db.close();
     } 
   
