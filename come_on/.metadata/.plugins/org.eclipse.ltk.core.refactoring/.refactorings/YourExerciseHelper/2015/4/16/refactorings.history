@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extracts string &apos;开始锻炼&apos; into R.string._" description="Extracts string &apos;开始锻炼&apos; into R.string._" file="/YourExerciseHelper/res/layout/activity_main.xml" flags="6" id="com.android.ide.eclipse.adt.refactoring.extract.string" mode="EDIT_SOURCE" proj="/YourExerciseHelper" rplc-all-java="false" rplc-all-xml="false" sel-end="1091" sel-start="1073" stamp="1429102289862" tok-esc="开始锻炼" xml-attr-name="android:text"/>
+</session>

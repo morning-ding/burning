@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="柚子：“想认识你哦！”"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:maxHeight="5dp"
+        android:maxWidth="5dp"
+        android:src="@drawable/yuzu3"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/imageButton2"
+        android:layout_alignRight="@+id/name"
+        android:ems="10"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/imageButton2"
+        android:layout_alignRight="@+id/imageButton2"
+        android:ems="10"
+        tools:ignore="TextFields" />
+
+    <CheckBox
+        android:id="@+id/nameChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton2"
+        android:layout_centerHorizontal="true"
+        android:text="记住用户名" />
+
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/textView4"
+        android:ems="10"
+        tools:ignore="TextFields" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/height"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/weight"
+        android:text="体重："
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/height"
+        android:layout_toLeftOf="@+id/height"
+        android:text="身高："
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="28dp"
+        android:layout_toLeftOf="@+id/name"
+        android:text="名字："
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>
