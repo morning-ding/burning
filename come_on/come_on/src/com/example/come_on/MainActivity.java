@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -37,9 +39,8 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
-	private Button button,begin;
-	private TextView textView1,textView2;
-	private ImageButton imageButton;
+	private TextView textView1,textView2,Editweight,Editheight,BMI,judge;
+	private ImageButton imageButton,imageButton2,begin;
 	private SharedPreferences sp;
 	MediaPlayer mp2 = null;
 	private static int countDay;
@@ -53,27 +54,34 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button  = (Button)this.findViewById(R.id.button1);
-        begin = (Button)this.findViewById(R.id.button2);
+        imageButton2  = (ImageButton)this.findViewById(R.id.imageButton2);
+        begin =(ImageButton)this.findViewById(R.id.imageButton3);
         imageButton = (ImageButton)this.findViewById(R.id.imageButton1);
+        Editheight = (TextView)this.findViewById(R.id.height);
+        Editweight = (TextView)this.findViewById(R.id.weight);
+        BMI = (TextView)this.findViewById(R.id.bmi);
+        judge = (TextView)this.findViewById(R.id.judge);
         textView1 = (TextView)this.findViewById(R.id.textView3);
         textView2 = (TextView)this.findViewById(R.id.textView2);
         mp2 = MediaPlayer.create(this, R.raw.yuzumusic);
         sp = getSharedPreferences("userInfo", 0);
         String name =sp.getString("USER_NAME", "");
+        
+        
+        	
         boolean remember = sp.getBoolean("remember", false);
         if(remember){
         	textView2.setText(name);
         	textView1.setText("欢迎回来");
         }
-        button.setOnClickListener(new OnClickListener() {
+        imageButton2.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(MainActivity.this,
 						InformationUp.class);
-				startActivity(intent);
+				startActivityForResult(intent, 1000);
 				isFirst +=1;
 			}
 		});
@@ -165,6 +173,33 @@ public class MainActivity extends Activity {
     public static boolean isTheSameDay() {
     	if(diffDay==0) return true;
     	else return false;
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	// TODO Auto-generated method stub
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if(requestCode == 1000 && resultCode ==1001) {
+    		String height = data.getStringExtra("height");
+    		String weight = data.getStringExtra("weight");
+    		Editheight.setText(height);
+            Editweight.setText(weight);
+            Double h = Double.parseDouble(String.valueOf(height));
+            h = h / 100.0;
+            System.out.println(h);
+            Double w = Double.parseDouble(String.valueOf(weight));
+            System.out.println(w);
+            Double bmi = w/h/h;
+            BigDecimal b = new BigDecimal(bmi);
+            BigDecimal result = b.setScale(2, RoundingMode.DOWN);
+            String Bmi = String.valueOf(result);
+            BMI.setText(Bmi);
+            if(bmi<18.5) judge.setText("体重过轻");
+            else if(bmi<24) judge.setText("正常");
+            else if(bmi<27) judge.setText("过重");
+            else if(bmi<30) judge.setText("轻度肥胖");
+            else if(bmi<35) judge.setText("中度肥胖");
+            else judge.setText("重度肥胖");
+    	}
     }
     
        

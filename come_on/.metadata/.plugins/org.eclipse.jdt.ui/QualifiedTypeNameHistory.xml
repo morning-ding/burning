@@ -16,8 +16,6 @@
 <fullyQualifiedTypeName name="com.example.come_on.InformationUp"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="android.widget.ImageButton"/>
 <fullyQualifiedTypeName name="android.content.res.AssetFileDescriptor"/>
 <fullyQualifiedTypeName name="android.content.res.AssetManager"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
@@ -40,9 +38,13 @@
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
-<fullyQualifiedTypeName name="com.example.come_on.R.id"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="com.example.come_on.file.FileService"/>
 <fullyQualifiedTypeName name="com.example.come_on.MainActivity"/>
+<fullyQualifiedTypeName name="android.widget.ImageButton"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.example.come_on.R.id"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="java.math.RoundingMode"/>
 </qualifiedTypeNameHistroy>

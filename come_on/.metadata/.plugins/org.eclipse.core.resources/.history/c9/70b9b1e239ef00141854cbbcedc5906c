@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="柚子：“想认识你哦！”"
+        android:background="#ff7f50"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:maxHeight="5dp"
+        android:maxWidth="5dp"
+        android:src="@drawable/yuzu3"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/height"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="身高："
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <CheckBox
+        android:id="@+id/nameChecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:text="记住用户名"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@+id/nameChecked"
+        android:text="名字："
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/height"
+        android:layout_toRightOf="@+id/textView2"
+        android:ems="10"
+        tools:ignore="TextFields" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/imageButton2"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@+id/textView3"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/height"
+        android:layout_alignRight="@+id/height"
+        android:layout_below="@+id/height"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_toLeftOf="@+id/editText1"
+        android:text="体重："
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>

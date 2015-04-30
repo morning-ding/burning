@@ -33,6 +33,7 @@ public class InformationUp extends Activity {
     	username= (EditText)this.findViewById(R.id.name);
     	Editheight= (EditText)this.findViewById(R.id.height);
     	Editweight= (EditText)this.findViewById(R.id.weight);
+    	
     	remember = (CheckBox)this.findViewById(R.id.nameChecked);
     	imageButton = (ImageButton)this.findViewById(R.id.imageButton2);
     	
@@ -51,6 +52,11 @@ public class InformationUp extends Activity {
 				// TODO Auto-generated method stub
 				SharedPreferences.Editor editor = sp.edit();
 				String value = username.getText().toString().trim();
+				String height = "";
+				String weight = "";
+				height = Editheight.getText().toString().trim();
+				
+				weight = Editweight.getText().toString().trim();
 				if(value == null || value.equals("")) {
 					username.setError("请输入用户名");
 					return;
@@ -61,13 +67,15 @@ public class InformationUp extends Activity {
                 }else{
                     editor.putBoolean("remember", false);                
                 }
+				
 				editor.commit();
-				String height = Editheight.getText().toString().trim();
-				String weight = Editweight.getText().toString().trim();
-				editor.putString("WEIGHT", weight);
-				editor.putString("HEIGHT", height);
-				Intent intent =new Intent(InformationUp.this,MainActivity.class);
-				startActivity(intent);
+		//		Intent intent =new Intent(InformationUp.this,MainActivity.class);
+				Intent intent = new Intent();
+				intent.putExtra("weight", weight);
+				intent.putExtra("height", height);
+				setResult(1001,intent);
+	//			startActivity(intent);
+				finish();
 			}
 		});
     	
